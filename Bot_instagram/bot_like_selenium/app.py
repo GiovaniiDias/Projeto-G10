@@ -45,13 +45,47 @@ def iniciar_driver():
 driver = iniciar_driver()
 
 #acessando o site
-driver.get('https://cursoautomacao.netlify.app/')
+driver.get('https://www.instagram.com/')
+sleep(2)
+# entrar no insta
+usuario=driver.find_element(By.XPATH,"//input[@name='username']")
+usuario.send_keys('+5551983405464')
+sleep(1)
+# digitar usuario e senha 
+senha=driver.find_element(By.XPATH,"//input[@aria-label='Senha']")
+senha.send_keys('GDA101992')
+sleep(1)
+# entrar
+botao_entrar=driver.find_element(By.XPATH,"//div[text()='Entrar']")
+botao_entrar.click()
+sleep(10)
+
+while True:
+# procurar a pagina desejada
+    driver.get('https://www.instagram.com/devaprender/')
+    sleep(2)
+    # clicar na ultima postagem
+
+    ultima_postagem=driver.find_element(By.XPATH,"//div[@class='_aagw']")
+    ultima_postagem.click()
+    sleep(2)
 
 
+    # realizar a verificação se foi curtida, caso não , curtir e comentar. 
+    try:
+            verifica_curtida = driver.find_element(By.XPATH,'//section//div[@role="button"]//*[@aria-label="Curtir"]')
+    except:
+            print('A ultima postagem já foi curtida.')
+            sleep(86400)
+    else:
+            botao_curtir = driver.find_elements(By.XPATH,
+                                                '//article[@role="presentation"]//section//div[@role="button"]')
+            sleep(5)
+            driver.execute_script('arguments[0].click()', botao_curtir[0])
+            print('Feito! Ultima postagem curtida.')
 
-
-
-
+            # aguardar 24h e retomar o processo 
+    sleep(86400)
 
 input('')
 driver.close()
