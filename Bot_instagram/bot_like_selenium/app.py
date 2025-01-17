@@ -85,7 +85,7 @@ while True:
             print('Feito! Ultima postagem curtida.')
 
             # aguardar 24h e retomar o processo 
-    sleep(86400)
+    sleep(84400)
 
 input('')
 driver.close()
