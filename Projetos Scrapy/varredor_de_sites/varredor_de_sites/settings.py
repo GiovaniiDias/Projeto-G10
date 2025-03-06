@@ -17,7 +17,7 @@ NEWSPIDER_MODULE = "varredor_de_sites.spiders"
 #USER_AGENT = "varredor_de_sites (+http://www.yourdomain.com)"
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+#ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -25,7 +25,28 @@ ROBOTSTXT_OBEY = True
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 3
+#DOWNLOAD_DELAY = 4
+
+## settings.py
+
+#DOWNLOADER_MIDDLEWARES = {
+#    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+#    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+#    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+#    'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
+#}
+
+## settings.py
+
+#FAKEUSERAGENT_PROVIDERS = [
+   # 'scrapy_fake_useragent.providers.FakeUserAgentProvider',  # This is the first provider we'll try
+#    'scrapy_fake_useragent.providers.FakerProvider',  # If FakeUserAgentProvider fails, we'll use faker to generate a user-agent string for us
+#    'scrapy_fake_useragent.providers.FixedUserAgentProvider',  # Fall back to USER_AGENT value
+#]
+
+## Set Fallback User-Agent
+#USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'
+
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
@@ -62,9 +83,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "varredor_de_sites.pipelines.VarredorDeSitesPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "varredor_de_sites.pipelines.SQLitePipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

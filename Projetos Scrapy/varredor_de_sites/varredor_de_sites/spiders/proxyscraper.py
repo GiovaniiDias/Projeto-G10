@@ -14,10 +14,10 @@ class ProxyScraperSpider(scrapy.Spider):
     def parse(self, response):
         for linha in response.xpath("//table[@class='table table-striped table-bordered']//tr"):
             yield {
-                'Proxy Name': linha.xpath('./td[1]/a/text()').get(),
-                'Domain': linha.xpath('./td[2]/text()').get(),
-                'Contry': linha.xpath('./td[3]/text()').get(),
-                'Speed': linha.xpath('./td[4]/text()').get(),
-                'Pop': linha.xpath('./td[5]/div/div/text()').get()
+                'proxy_name': linha.xpath('./td[1]/a/text()').get(),
+                'domain': linha.xpath('./td[2]/text()').get(),
+                'contry': linha.xpath('./td[3]/text()').get(),
+                'speed': linha.xpath('./td[4]/text()').get(),
+                'pop': linha.xpath('./td[5]/div/div/text()').get()
                 
             }
