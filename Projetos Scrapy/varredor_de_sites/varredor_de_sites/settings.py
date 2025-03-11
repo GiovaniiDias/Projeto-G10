@@ -38,14 +38,22 @@ ROBOTSTXT_OBEY = False
 
 ## settings.py
 
-#FAKEUSERAGENT_PROVIDERS = [
-   # 'scrapy_fake_useragent.providers.FakeUserAgentProvider',  # This is the first provider we'll try
-#    'scrapy_fake_useragent.providers.FakerProvider',  # If FakeUserAgentProvider fails, we'll use faker to generate a user-agent string for us
-#    'scrapy_fake_useragent.providers.FixedUserAgentProvider',  # Fall back to USER_AGENT value
-#]
+FAKEUSERAGENT_PROVIDERS = [
+    'scrapy_fake_useragent.providers.FakeUserAgentProvider',  # This is the first provider we'll try
+    'scrapy_fake_useragent.providers.FakerProvider',  # If FakeUserAgentProvider fails, we'll use faker to generate a user-agent string for us
+    'scrapy_fake_useragent.providers.FixedUserAgentProvider',  # Fall back to USER_AGENT value
+]
 
 ## Set Fallback User-Agent
-#USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'
+
+#configuração de proxy
+SCRAPEOPS_API_KEY = 'de37f4fe-beea-473d-8f99-f3e21d229364'
+SCRAPEOPS_PROXY_ENABLED = True
+
+DOWNLOADER_MIDDLEWARES = {
+    'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
+}
 
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
