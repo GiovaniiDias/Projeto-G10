@@ -16,25 +16,26 @@ class SQLitePipeline(object):
         self.cursor.execute('''
              CREATE TABLE IF NOT EXISTS  proxies(
                 proxy_name TEXT NOT NULL PRIMARY KEY,
-                domain TEXT
-                contry TEXT
-                speed TEXT
-                pop NUMBER       
+                domain TEXT,
+                country TEXT,
+                speed TEXT,
+                popularity NUMBER       
               )               
         ''')
         self.connection.commit()
 
     def close_spider(self, spider):
         self.connection.close()
+
     def process_item(self, item, spider):
         self.cursor.execute('''
-             INSERT OR IGNORE INTO proxies(proxy_name,domain,contry,speed,pop) VALUES(?,?,?,?,?) 
-    ''',(
+             INSERT OR IGNORE INTO proxies(proxy_name,domain,country,speed,popularity) VALUES(?,?,?,?,?) 
+    ''', (
         item.get('proxy_name'),
         item.get('domain'),
-        item.get('contry'),
+        item.get('country'),
         item.get('speed'),
-        item.get('pop'),
+        item.get('popularity'),
     ))
         self.connection.commit()
         return item

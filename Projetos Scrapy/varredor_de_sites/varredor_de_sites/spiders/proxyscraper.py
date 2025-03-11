@@ -16,8 +16,8 @@ class ProxyScraperSpider(scrapy.Spider):
             yield {
                 'proxy_name': linha.xpath('./td[1]/a/text()').get(),
                 'domain': linha.xpath('./td[2]/text()').get(),
-                'contry': linha.xpath('./td[3]/text()').get(),
+                'country': linha.xpath('./td[3]/text()').get(),
                 'speed': linha.xpath('./td[4]/text()').get(),
-                'pop': linha.xpath('./td[5]/div/div/text()').get()
+                'popularity': linha.xpath('./td[5]/div/div/text()').get()
                 
             }
