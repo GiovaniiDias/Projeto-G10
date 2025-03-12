@@ -25,16 +25,21 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-#DOWNLOAD_DELAY = 4
+DOWNLOAD_DELAY = 3
+
+#temporario
+
+
+
 
 ## settings.py
 
-#DOWNLOADER_MIDDLEWARES = {
-#    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
-#    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
-#    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
-#    'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
-#}
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware': None,
+    'scrapy_fake_useragent.middleware.RandomUserAgentMiddleware': 400,
+    'scrapy_fake_useragent.middleware.RetryUserAgentMiddleware': 401,
+}
 
 ## settings.py
 
@@ -46,6 +51,7 @@ FAKEUSERAGENT_PROVIDERS = [
 
 ## Set Fallback User-Agent
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36 Edg/115.0.1901.203'
+
 
 #configuração de proxy
 SCRAPEOPS_API_KEY = 'de37f4fe-beea-473d-8f99-f3e21d229364'
@@ -117,5 +123,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = "scrapy.extensions.httpcache.FilesystemCacheStorage"
 
 # Set settings whose default value is deprecated to a future-proof value
+REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
 FEED_EXPORT_ENCODING = "utf-8"
