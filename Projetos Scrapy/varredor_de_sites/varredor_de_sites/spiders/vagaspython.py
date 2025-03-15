@@ -25,3 +25,18 @@ class IndeedPythonSpider(scrapy.Spider):
                 'local': item.xpath(".///div[@data-testid='text-location']/text()").get(),
                 'link': 'https://br.indeed.com' + item.xpath(".//a/@href").get()
             }
+        try:
+            link_proxima_pagina = response.xpath("//a[@data-testid='pagination-page-next']/@href").get()
+            print('#'*10)
+            print(link_proxima_pagina)
+            print('#'*10)
+
+            link_completo = 'https://br.indeed.com' + link_proxima_pagina
+            print('#'*10)
+            print(link_completo)
+            print('#'*10)
+            yield scrapy.Request(url=link_completo, callback=self.parse)
+
+        except Exception as error:
+            print(error)
+            print('Chegamos na ultima pagina')
