@@ -453,6 +453,29 @@ mail['From'] =  EMAIL_ADDRESS
 mail['To'] = 'giovani.eb3@gmail.com'
 mail.add_header('Content-Type','text/html')
 mail.set_payload(mensagem.encode('utf-8'))
+
+# anexo de arquivos
+# imagens = ['nome_da_img.jpg','nome_2.jpg']
+
+#for imagem in imagens:
+#    with open(imagem, 'rb') as arquivo:
+#        dados = arquivo.read()
+#        extensao_imagem = imghdr.what(arquivo.name)
+#        nome_arquivo = arquivo.name
+#        mail.add_attachment(dados, maintype='image',
+#                            subtype=extensao_imagem, filename=nome_arquivo)
+
+# Anexar qualquer tipo de arquivo(que não seja imagem)
+#arquivos = ['csv_exemplo.csv', 'exemplo_word.docx',
+#            'ExemploPlanilha.xlsx', 'PDF_Exemplo.pdf', 'Untitled presentation.pptx']
+
+#for arquivo in arquivos:
+#    with open(arquivo, 'rb') as arquivo:
+#        dados = arquivo.read()
+#        nome_arquivo = arquivo.name
+#        mail.add_attachment(dados, maintype='application',
+#                            subtype='octet-stream', filename=nome_arquivo)
+
 # servidor smtp + nome do provedor (outlook, gmail, yahoo)
 # enviar email
 with smtplib.SMTP_SSL('smtp.gmail.com',465) as email:
