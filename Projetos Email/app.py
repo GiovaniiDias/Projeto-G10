@@ -1,11 +1,13 @@
 import smtplib
 from email.message import EmailMessage
+from time import sleep
+
 
 
 # configurações de login
 EMAIL_ADDRESS = 'giovani.eb3@gmail.com'
 EMAIL_PASSWORD ='cwsn sypq romc wmwr'
-
+contatos = ['email1@email.com','email4@email.com', 'email3@email.com', 'email2@email.com']
 # criar e enviar email
 
 mail = EmailMessage()
@@ -450,7 +452,7 @@ mensagem = '''
 '''
 
 mail['From'] =  EMAIL_ADDRESS
-mail['To'] = 'giovani.eb3@gmail.com'
+mail['To'] = ', '.join(contatos)
 mail.add_header('Content-Type','text/html')
 mail.set_payload(mensagem.encode('utf-8'))
 
@@ -478,6 +480,9 @@ mail.set_payload(mensagem.encode('utf-8'))
 
 # servidor smtp + nome do provedor (outlook, gmail, yahoo)
 # enviar email
-with smtplib.SMTP_SSL('smtp.gmail.com',465) as email:
-    email.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
-    email.send_message(mail)
+for contato in contatos:
+
+    with smtplib.SMTP_SSL('smtp.gmail.com',465) as email:
+        email.login(EMAIL_ADDRESS,EMAIL_PASSWORD)
+        email.send_message(mail)
+        sleep(24)
