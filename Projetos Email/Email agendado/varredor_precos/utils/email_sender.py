@@ -1,7 +1,7 @@
 import smtplib
 from email.message import EmailMessage
 from time import sleep
-import imghdr
+from PIL import Image
 
 
 class Emailer:
@@ -22,10 +22,20 @@ class Emailer:
         for imagem in lista_imagens:
             with open(imagem, 'rb') as arquivo:
                 dados = arquivo.read()
-                extensao_imagem = imghdr.what(arquivo.name)
                 nome_arquivo = arquivo.name
+               # Identificar o tipo da imagem usando Pillow
+            try:
+                with Image.open(arquivo) as img:
+                    extensao_imagem = img.format.lower()  # Exemplo: 'jpeg', 'png'
+            except Exception as e:
+                print(f"Erro ao identificar a imagem {nome_arquivo}: {e}")
+                extensao_imagem = None
+
+        if extensao_imagem:  # Apenas anexa se a extensão for identificada
             self.mail.add_attachment(dados, maintype='image',
                                      subtype=extensao_imagem, filename=nome_arquivo)
+        else:
+            print(f"A extensão da imagem {nome_arquivo} não pôde ser identificada e não foi anexada.")
 
     def anexar_arquivos(self, lista_arquivos):
         for arquivo in lista_arquivos:
