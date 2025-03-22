@@ -6,7 +6,7 @@ worbook = openpyxl.Workbook()
 # deletando a sheet padrao
 del worbook['Sheet']
 
-# nome da planilha
+# nome da planilha deve ser passado somente depois de criar as primeiras sheets
 #worbook.save('computadores.xlsx')
 
 #Criando a sheet 1

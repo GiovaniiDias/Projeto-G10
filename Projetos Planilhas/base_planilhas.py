@@ -50,3 +50,39 @@ workbook.save('endereços.xlsx')
 sheet_planilha01['A6'].value = 'endereço 5'
 sheet_planilha01['B6'].value = 'numero cep 5'
 sheet_planilha01['C6'].value = 'casa 5'
+
+
+# excluindo linhas
+sheet_planilha01.delete_rows(4)
+#e para excluir mais de uma , basta adicionar a vergula antes ex: (2,6)
+#vai exclir da 2 até a 6
+workbook.save('endereços.xlsx')
+
+# excluir colunas
+# mesmo processo anterior
+sheet_planilha01.delete_cols(3)
+workbook.save('endereços.xlsx')
+
+# apagando somente a celula
+# 1º nome do sheet  depois nome da celula a ser excluida
+del workbook['Planilha 01']['B3']
+workbook.save('endereços.xlsx')
+
+'''
+base para input
+
+Apos criar a estrutura base da planilha(pagina, linhas e coluna)
+cria-se um laço de repetição
+
+continuar == 's'
+while continuar =='s':
+    rua = input('rua: ')
+    cep = input('cep: ')
+    casa = input('casa: ')
+    sheet__planilha01.append(rua,cep,casa)
+    continuar = input('adicionar mais um endereço? (s/n)')
+
+workbook.save('endereços.xlsx')
+
+# se a resposta do usuario for diferente de 's', vaio encerrar o laço e salvar as informações 
+'''
